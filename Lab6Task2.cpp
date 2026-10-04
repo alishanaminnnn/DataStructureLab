@@ -119,21 +119,19 @@ public:
 // Check whether the stack is a palindrome
 bool palindrome(Stack s1)
 {
-    Stack s2 = s1;
-
     int length = s1.getSize();
     int* arr = new int[length];
 
-    // Store popped elements in the array
+    // Store stack elements in an array
     for (int i = 0; i < length; i++)
     {
-        *(arr + i) = s1.pop();
+        arr[i] = s1.pop();
     }
 
-    // Compare array elements with the copied stack
-    for (int i = 0; i < length; i++)
+    // Compare the array with its reverse
+    for (int i = 0; i < length / 2; i++)
     {
-        if (*(arr + i) != s2.pop())
+        if (arr[i] != arr[length - 1 - i])
         {
             delete[] arr;
             return false;
@@ -151,9 +149,9 @@ int main()
     s1.push(2);
     s1.push(4);
     s1.push(5);
-    s1.push(6);
-    s1.push(7);
-    s1.push(8);
+    s1.push(5);
+    s1.push(4);
+    s1.push(2);
 
     if (palindrome(s1))
     {
