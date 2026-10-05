@@ -161,6 +161,6 @@ int main()
     {
         cout << "The Stack is Not Palindrome..";
     }
-
+    
     return 0;
 }
