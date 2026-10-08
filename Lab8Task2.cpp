@@ -100,7 +100,55 @@ public:
             lenght++;
         }
     }
+    
+
+
+
+
+
+
+    //Task 2
+
+    int getSum(Node* temp) {
+        if (temp == nullptr) {
+            return 0;
+        }
+
+        return temp->data + getSum(temp->next);
+    }
+
+    double getAverage() {
+        return (double)getSum(head) / lenght;
+    }
+
+
+
+
+
+
+
+
+    //Task 3
+    int countOdd(Node* temp) {
+        if (temp == nullptr) {
+            return 0;
+        }
+
+        if (temp->data % 2 != 0) {
+            return 1 + countOdd(temp->next);
+        }
+
+        return countOdd(temp->next);
+    }
+
+
+
+
+
+
+    
 };
+
 int main() {
     LinkList l1;
 
@@ -112,7 +160,11 @@ int main() {
 
     l1.insertion(100, 1);
     l1.insertion(200, 3);
+
     l1.display();
+
+    cout << "Average: " << l1.getAverage() << endl;
+    cout << "Odd Numbers: " << l1.countOdd(l1.head) << endl;
 
     return 0;
 }
