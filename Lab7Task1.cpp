@@ -75,11 +75,14 @@ int main() {
   int k;
   cout << "Enter K: ";
   cin >> k;
-  for (int i = 0; i < k; i++) {
-    q1.enqueue(q1.dequeue());
+
+  while (q1.getSize() > 1) {
+    for (int i = 1; i < k; i++) {
+      q1.enqueue(q1.dequeue());
+    }
+    cout << q1.dequeue() << " is Eliminated" << endl;
   }
-  cout << q1.peek();
-  
+  cout << q1.peek() << " is the winner.....";
 
   return 0;
 }
