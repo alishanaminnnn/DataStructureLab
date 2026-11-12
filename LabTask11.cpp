@@ -1,4 +1,5 @@
 
+#include <algorithm>
 #include <iostream>
 using namespace std;
 
@@ -25,24 +26,51 @@ Node *insertion(Node *r, int data) {
   return r;
 }
 
-
 int height(Node *r) {
   if (r == nullptr) {
-    return 0;
+    return -1;
   }
+
   int x = height(r->right);
   int y = height(r->left);
-  return y-x;
+
+  return 1 + max(x, y);
+}
+
+Node *ISbalanced(Node *r) {
+  if (r == nullptr) {
+    return nullptr;
+  }
+
+  if (bf(r) > 1 || bf(r) < -1) {
+    return r;
+  }
+
+  Node *x = ISbalanced(r->right);
+  Node *y = ISbalanced(r->left);
+
+  if (x != nullptr) {
+    return x;
+  }
+
+  if (y != nullptr) {
+    return y;
+  }
+
+  return nullptr;
 }
 
 int main() {
   Node *root = nullptr;
 
-  int arr[] = {1, 2, 4, 8, 5, 3, 9, 0};
+  int arr[] = {1, 3, 2};
 
-  for (int i = 0; i < 8; i++) {
+  for (int i = 0; i < 3; i++) {
     root = insertion(root, *(arr + i));
   }
+
+  cout << "Height: " << height(root) << endl;
+  cout << "Balance Factor: " << balanceFactor(root) << endl;
 
   return 0;
 }
